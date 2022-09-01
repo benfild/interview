@@ -2,6 +2,8 @@ const { validationResult } = require('express-validator');
 
 // helpers variables
 const { throwError, checkErrorStatus } = require('../../helpers/handler');
+const { RESULT_STATUS } = require('../helpers/constants');
+
 
 
 // import student model and user model
@@ -19,6 +21,14 @@ exports.addResult = async (req, res, next) => {
 
     // get result average
     const average = (mathematics + english + physics + chemistry + biology) / 5;
+    const status = RESULT_STATUS.pending;
+
+    // check if average is greater than 50 set result status to pass if average is less than 50 set result status to fail otherwise set to pending
+    if (average >= 50) {
+        status = RESULT_STATUS.pass;
+    } else if(average < 50) {
+        status = RESULT_STATUS.fail;
+    }
 
     try {
         // get the validation errors
@@ -52,7 +62,9 @@ exports.addResult = async (req, res, next) => {
             phy: physics,
             chem: chemistry,
             bio: biology,
-            average,
+            status: status,
+            average: average,
+            filled_on: new Date()
         });
 
         newResult.reporter.id = reporter.id;
@@ -82,7 +94,6 @@ exports.addResult = async (req, res, next) => {
 }
 
 // exports function that updates the result
-e
 
 
 
