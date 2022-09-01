@@ -50,6 +50,9 @@ router.get('/results', isAuthenticated,  resultController.getResults);
 // export router that delete student by id
 router.delete('/delete-result', isAuthenticated,  resultController.deleteResult);
 
+// export router that delete all results
+router.delete('/delete-results', isAuthenticated, resultController.deleteAllResults);
+
 
 // exports router
 module.exports = router; 
