@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { body } = require('express-validator');
 
-// import adminController
-const adminController = require('../controllers/admin.controller');
+// import userController
+const userController = require('../controllers/user.controller');
 
 const { isAuthenticated } = require('../middlewares/auth.middleware');
 
@@ -25,13 +25,13 @@ router.post('/register', [
     .withMessage('Password is required.')
     .isLength({ min: 8 })
     .withMessage('Password must be at least 8 characters long.')
-], isAuthenticated, adminController.register);
+], isAuthenticated, userController.register);
 
-// export router get all admins
-router.get('/users', isAuthenticated, adminController.getUsers)
+// export router get all users
+router.get('/users', isAuthenticated, userController.getUsers)
 
-// export router that delete admin
-router.delete('/delete-user', isAuthenticated, adminController.deleteUser);
+// export router that delete user
+router.delete('/delete-user', isAuthenticated, userController.deleteUser);
 
 // exports router
 module.exports = router; 

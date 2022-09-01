@@ -32,12 +32,14 @@ app.use(setHeaders);
 // * ROUTES VARIABLES
 const authRoutes = require('./src/routes/auth.route');
 const userRoutes = require('./src/routes/user.route');
-const adminRoutes = require('./src/routes/admin.route');
+const studentRoutes = require('./src/routes/student.route');
+const resultRoutes = require('./src/routes/result.route');
 
 // * ROUTES API's
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/api/student', studentRoutes);
+app.use('/api/result', resultRoutes);
 
 app.all('*', (req, res, next) => {
     res.json({

@@ -16,20 +16,20 @@ router.post('/login', [
     body('password').notEmpty().withMessage('Password is required.')
 ], authController.authenticate);
 
-// export router that forgot password
-router.post('/forgot-password', [
-    body('email')
-        .notEmpty()
-        .withMessage('Please enter your email')
-        .isEmail()
-        .withMessage('Please enter a valid email')
-        .normalizeEmail()
-], authController.forgotPassword);
+// // export router that forgot password
+// router.post('/forgot-password', [
+//     body('email')
+//         .notEmpty()
+//         .withMessage('Please enter your email')
+//         .isEmail()
+//         .withMessage('Please enter a valid email')
+//         .normalizeEmail()
+// ], authController.forgotPassword);
 
-// export patch router that reset password
-router.patch('/reset-password', [
-    body('password').isLength({ min: 8 }).withMessage('Please enter a valid password')
-], authController.resetPassword);
+// // export patch router that reset password
+// router.patch('/reset-password', [
+//     body('password').isLength({ min: 8 }).withMessage('Please enter a valid password')
+// ], authController.resetPassword);
 
 // exports router
 module.exports = router;
