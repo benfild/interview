@@ -5,7 +5,7 @@ const { VERIFICATION_OBJECT, DEFAULT_PICTURE, ROLES_OBJECT} = require('../helper
 
 // create user model schema with name, email, password and role
 const UserSchema = new Schema({
-    username: {
+    name: {
         type: String,
         required: true
     },
@@ -17,10 +17,6 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    phone: {
-        type: Number,
-        required: true
-    },
     password: {
         type: String,
         required: true
@@ -28,13 +24,7 @@ const UserSchema = new Schema({
     role: {
         type: String,
         default: ROLES_OBJECT.teacher,
-    },
-    verified: {
-        type: Boolean,
-        default: VERIFICATION_OBJECT.unverified
-    },
-    verificationToken: {type: String},
-    verifyTime: {type: Date}
+    }
 });
 
 // export user model

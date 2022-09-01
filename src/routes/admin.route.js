@@ -58,13 +58,13 @@ router.post('/register-teacher', [
     .withMessage('Password is required.')
     .isLength({ min: 8 })
     .withMessage('Password must be at least 8 characters long.')
-], isAuthenticated, teacherController.register);
+], isAuthenticated, adminController.register);
 
 // export router get all admins
-router.get('/teachers', isAuthenticated, teacherController.getAdmins)
+router.get('/teachers', isAuthenticated, adminController.getAdmins)
 
 // export router that delete admin
-router.delete('/delete-teacher', isAuthenticated, teacherController.deleteAdmin);
+router.delete('/delete-teacher', isAuthenticated, adminController.deleteAdmin);
 
 // * REPORT PART
 // export router get all results

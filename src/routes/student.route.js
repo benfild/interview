@@ -17,24 +17,6 @@ router.post('/register', [
         .withMessage('Full name is required.'),
 ], studentController.register);
 
-// export router that update result by id
-router.put('/update', [
-    body('mathematics')
-        .notEmpty()
-        .withMessage('Mathematics is required.'),
-    body('english')
-        .notEmpty()
-        .withMessage('English is required.'),
-    body('physics')
-        .notEmpty()
-        .withMessage('Physics is required.'),
-    body('chemistry')
-        .notEmpty()
-        .withMessage('Chemistry is required.'),
-    body('biology')
-        .notEmpty()
-        .withMessage('Biology is required.'),
-], isAuthenticated, resultController.updateResult);
 
 // export router that get all student
 router.get('/students', isAuthenticated,  studentController.getStudents);

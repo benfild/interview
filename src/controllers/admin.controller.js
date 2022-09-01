@@ -15,7 +15,7 @@ const Admin = require('../models/admin.model');
 // exports register function that creates a new user then sends an email verification
 exports.register = async (req, res, next) => {
     // get the email, password, fullName, role and phoneNumber from the request body
-    const { fullName, mobile, nida, homeAddress, email, password, } = req.body;
+    const { name, email, password, } = req.body;
     console.log(req.body);
     try {
         // get the validation errors

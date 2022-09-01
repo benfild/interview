@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 // helpers variables
 const { throwError, checkErrorStatus } = require('../../helpers/handler');
 const { generateRandomToken, addMinutes, jwtAccessTokenToSignUser } = require('../../helpers/jwt');
-const { sendEmailVerification, sendPasswordResetEmail } = require('../../helpers/email');
 
 // import user, police, citizen and organization models
 const User = require('../models/user.model');;
