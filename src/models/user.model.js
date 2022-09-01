@@ -27,7 +27,7 @@ const UserSchema = new Schema({
     },
     role: {
         type: String,
-        default: ROLES_OBJECT.citizen,
+        default: ROLES_OBJECT.teacher,
     },
     verified: {
         type: Boolean,

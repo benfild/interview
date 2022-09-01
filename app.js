@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
+const compression = require('compression');
+const morgan = require('morgan');
+
 require('dotenv').config();
 const app = express();
 
@@ -19,35 +22,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'assets')));
-// use multer
-app.use(upload.fields(
-    [
-        {
-            name: 'image', maxCount: 1
-        },
-        {
-            name: 'voice', maxCount: 1
-        }
-    ]
-));
 
+app.use(compression());
+app.use(morgan('dev'));
 
 //set headers
 app.use(setHeaders);
-// app.use(cors());
+
 // * ROUTES VARIABLES
 const authRoutes = require('./src/routes/auth.route');
-const citizenRoutes = require('./src/routes/citizen.route');
+const userRoutes = require('./src/routes/user.route');
 const adminRoutes = require('./src/routes/admin.route');
 
 // * ROUTES API's
 app.use('/api/auth', authRoutes);
-app.use('/api/citizen', citizenRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/admin', adminRoutes);
 
 app.all('*', (req, res, next) => {
     res.json({
-        message: 'Welcome to NodeJS tutorial!',
+        message: 'Welcome to Results system!',
     });
 });
 
@@ -55,20 +49,20 @@ app.all('*', (req, res, next) => {
 app.use(handleError);
 
 // import session and mongoDB store then create mongoDb store
-// const session = require('express-session');
-// const MongoDBStore = require('connect-mongodb-session')(session);
-// const store = new MongoDBStore({
-    // uri: config.db.url,
-//     collection: 'sessions'
-// });
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const store = new MongoDBStore({
+    uri: config.db.url,
+    collection: 'sessions'
+});
 
 // use session
-// app.use(session({
-//     secret: 'secret',
-//     resave: false,
-//     saveUninitialized: false,
-//     store: store
-// }));
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    store: store
+}));
 
 
 // connect to mongodb then start express server

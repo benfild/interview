@@ -8,11 +8,11 @@ const ResultSchema = new Schema({
     phy: { type: String, required: true },
     chem: { type: String, required: true},
     bio: { type: String, required: true },
-    status: { type: Boolean, default: RESULT_STATUS.incomplete },
+    status: { type: String, default: RESULT_STATUS.incomplete },
     average: {type: Number, required: true},
     reporter: {
         id: { type: Schema.Types.ObjectId, ref: 'User' },
-        username: String
+        name: String
     },
     filled_on: { type: Date, required: true },
 }, { timestamps: true });
