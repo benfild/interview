@@ -5,23 +5,14 @@ const router = require('express').Router();
 const authController = require('../controllers/auth.controller');
 const { body } = require('express-validator');
 
-const { authorized } = require('../middlewares/auth.middleware');
-
 // export router that login user
 router.post('/login', [
-    // body('email')
-    //     .notEmpty()
-    //     .withMessage('Email address is required.')
-    //     .isEmail()
-    //     .withMessage('Email address is invalid.')
-    //     .normalizeEmail(),
-    body('mobile')
+    body('email')
         .notEmpty()
-        .withMessage('Phone number is required.')
-        .isNumeric()
-        .withMessage('Phone number must be a number.')
-        .isLength({ min: 10, max: 10 })
-        .withMessage('Phone number must be 10 digits long.'),
+        .withMessage('Email address is required.')
+        .isEmail()
+        .withMessage('Email address is invalid.')
+        .normalizeEmail(),
     body('password').notEmpty().withMessage('Password is required.')
 ], authController.authenticate);
 
