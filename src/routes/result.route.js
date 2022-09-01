@@ -1,21 +1,29 @@
 const router = require('express').Router();
 const { body } = require('express-validator');
 
-// import studentController
-const studentController = require('../controllers/student.controller');
 // import resultController
 const resultController = require('../controllers/result.controller');
 
 const { isAuthenticated, isTeacher, isAdmin } = require('../middlewares/auth.middleware');
 
 // export router that register student
-router.post('/register', [
-    body('name')
+router.post('/add', [
+    body('mathematics')
         .notEmpty()
-        .withMessage('Name is required.')
-        .isLength({ min: 8 })
-        .withMessage('Full name is required.'),
-], studentController.register);
+        .withMessage('Mathematics is required.'),
+    body('english')
+        .notEmpty()
+        .withMessage('English is required.'),
+    body('physics')
+        .notEmpty()
+        .withMessage('Physics is required.'),
+    body('chemistry')
+        .notEmpty()
+        .withMessage('Chemistry is required.'),
+    body('biology')
+        .notEmpty()
+        .withMessage('Biology is required.'),
+], isAuthenticated, resultController.addResult);
 
 // export router that update result by id
 router.put('/update', [
@@ -37,10 +45,10 @@ router.put('/update', [
 ], isAuthenticated, resultController.updateResult);
 
 // export router that get all student
-router.get('/students', isAuthenticated,  studentController.getStudents);
+router.get('/results', isAuthenticated,  resultController.getResults);
 
 // export router that delete student by id
-router.delete('/delete-student', isAuthenticated,  studentController.deleteStudent);
+router.delete('/delete-result', isAuthenticated,  resultController.deleteResult);
 
 
 // exports router

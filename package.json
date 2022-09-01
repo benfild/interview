@@ -1,5 +1,5 @@
 {
-  "name": "lost_and_found_backend",
+  "name": "student_results",
   "version": "1.0.0",
   "description": "nodejs_api",
   "main": "app.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benfild/nodejs_fintech.git"
+    "url": "git+https://github.com/benfild/interview.git"
   },
   "author": "benward",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/benfild/nodejs_fintech/issues"
+    "url": "https://github.com/benfild/interview/issues"
   },
-  "homepage": "https://github.com/benfild/nodejs_fintech#readme",
+  "homepage": "https://github.com/benfild/interview#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
