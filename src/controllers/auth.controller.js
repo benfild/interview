@@ -2,8 +2,8 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 // helpers variables
-const { throwError, checkErrorStatus } = require('../../helpers/handler');
-const { jwtAccessTokenToSignUser } = require('../../helpers/jwt');
+const { throwError, checkErrorStatus } = require('../helpers/handler');
+const { jwtAccessTokenToSignUser } = require('../helpers/jwt');
 
 // import user, police, citizen and organization models
 const User = require('../models/user.model');;

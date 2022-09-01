@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
-const { throwError, checkErrorStatus } = require('../../helpers/handler');
-const { ROLES_OBJECT } = require('../../helpers/constants');
+const { throwError, checkErrorStatus } = require('../helpers/handler');
+const { ROLES_OBJECT } = require('../helpers/constants');
 
 // import user model
 const User = require('../models/user.model');

@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator');
 
 // helpers variables
-const { throwError, checkErrorStatus } = require('../../helpers/handler');
+const { throwError, checkErrorStatus } = require('../helpers/handler');
 const { RESULT_STATUS } = require('../helpers/constants');
 
 

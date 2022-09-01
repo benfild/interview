@@ -2,8 +2,8 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 // helpers variables
-const { throwError, checkErrorStatus } = require('../../helpers/handler');
-const { ROLES_OBJECT } = require('../../helpers/constants');
+const { throwError, checkErrorStatus } = require('../helpers/handler');
+const { ROLES_OBJECT } = require('../helpers/constants');
 
 // import user, police, user and organization models
 const User = require('../models/user.model');

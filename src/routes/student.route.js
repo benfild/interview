@@ -19,7 +19,7 @@ router.post('/register', [
 
 
 // export router that get all student
-router.get('/students', isAuthenticated,  studentController.getStudents);
+router.get('/students', isAuthenticated,  studentController.getAllStudents);
 
 // export router that delete student by id
 router.delete('/delete-student', isAuthenticated,  studentController.deleteStudent);

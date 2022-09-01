@@ -10,11 +10,10 @@ const morgan = require('morgan');
 require('dotenv').config();
 const app = express();
 
-const { config } = require('./config/variables.config');
+const config = require('./src/config/variables.config');
 
 
 // * Helpers variables
-const { upload } = require('./src/helpers/multer');
 const { setHeaders, handleError } = require('./src/helpers/handler');;
 
 // * set express middleware
@@ -54,7 +53,7 @@ app.use(handleError);
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const store = new MongoDBStore({
-    uri: config.db.url,
+    uri: config.config.db.url,
     collection: 'sessions'
 });
 
@@ -68,11 +67,11 @@ app.use(session({
 
 
 // connect to mongodb then start express server
-mongoose.connect(config.db.url, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(config.config.db.url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(config.db.port, () => {
-            console.log('Listening on port: ' + config.server.port);
+            console.log('Listening on port: ' + config.config.server.port);
         });
     }
     ).catch(err => {

@@ -45,13 +45,13 @@ router.put('/update', [
 ], isAuthenticated, resultController.updateResult);
 
 // export router that get all student
-router.get('/results', isAuthenticated,  resultController.getResults);
+router.get('/results', isAuthenticated,  resultController.getAllResults);
 
 // export router that delete student by id
 router.delete('/delete-result', isAuthenticated,  resultController.deleteResult);
 
 // export router that delete all results
-router.delete('/delete-results', isAuthenticated, resultController.deleteAllResults);
+// router.delete('/delete-results', isAuthenticated, resultController.deleteAllResults);
 
 
 // exports router

@@ -1,14 +1,11 @@
 const { validationResult } = require('express-validator');
 
 // helpers variables
-const { throwError, checkErrorStatus } = require('../../helpers/handler');
-const { sendPost } = require('../../helpers/social-post');
-const { POLICE_STATUS, REPORT_STATUS } = require('../../helpers/constants');
+const { throwError, checkErrorStatus } = require('../helpers/handler');
+const { POLICE_STATUS, REPORT_STATUS } = require('../helpers/constants');
 
 // import student model and user model
 const Student = require('../models/student.model');
-const User = require('../models/user.model');
-const Citizen = require('../models/citizen.model');
 
 
 // exports create function that creates a new student
@@ -104,7 +101,7 @@ exports.getStudentById = async (req, res, next) => {
 }
 
 // exports function that deletes a student by id
-exports.deleteStudentById = async (req, res, next) => {
+exports.deleteStudent = async (req, res, next) => {
     // get the student id from the request query
     const { id } = req.query;
 
