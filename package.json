@@ -1,0 +1,32 @@
+{
+  "name": "lost_and_found_backend",
+  "version": "1.0.0",
+  "description": "nodejs_api",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benfild/nodejs_fintech.git"
+  },
+  "author": "benward",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benfild/nodejs_fintech/issues"
+  },
+  "homepage": "https://github.com/benfild/nodejs_fintech#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "connect-mongodb-session": "^3.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10"
+  }
+}
