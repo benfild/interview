@@ -10,7 +10,7 @@ const morgan = require('morgan');
 require('dotenv').config();
 const app = express();
 
-const config = require('./config/config');
+const { config } = require('./config/variables.config');
 
 
 // * Helpers variables

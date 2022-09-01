@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { DEFAULT_PICTURE } = require('../helpers/constants');
+const { DEFAULT_PICTURE, ROLES_OBJECT } = require('../helpers/constants');
 
 const Schema = mongoose.Schema;
 
@@ -16,6 +16,10 @@ const AdminSchema = new Schema({
     profile_pic: {
         type: String,
         default: DEFAULT_PICTURE
+    },
+    role: {
+        type: String,
+        default: ROLES_OBJECT.admin,
     },
     password: {
         type: String,
