@@ -12,8 +12,8 @@ const User = require('../models/user.model');
 // exports register function that creates a new user 
 exports.register = async (req, res, next) => {
     // get the email, password, name
-    const { name, email, password, } = req.body;
-    console.log(req.body);
+    const { name, email, password, type } = req.body;
+
     try {
         // get the validation errors
         const errors = validationResult(req);
@@ -36,21 +36,31 @@ exports.register = async (req, res, next) => {
         // hash the password
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        // create the user
-        const newUser = new User({
-            name,
-            email,
-            role: ROLES_OBJECT.teacher,
-            password: hashedPassword
-        });
+        if (type === ROLES_OBJECT.teacher) {
+            // create the teacher
+            const newUser = new User({
+                name,
+                email,
+                role: ROLES_OBJECT.teacher,
+                password: hashedPassword
+            });
+        } else {
+            // create the user
+            const newUser = new User({
+                name,
+                email,
+                role: ROLES_OBJECT.admin,
+                password: hashedPassword
+            });
+        }
 
         // save the user
         await newUser.save();
-        
+
         // send the verification token
         res.status(200).json({
             status: 200,
-            message: 'Registered successfully',
+            message:    `${type} registered successfully` ,
         });
     } catch (err) {
         checkErrorStatus(err);
