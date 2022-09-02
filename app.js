@@ -49,11 +49,15 @@ app.all('*', (req, res, next) => {
 // error handling for responses
 app.use(handleError);
 
+
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI;
+
 // import session and mongoDB store then create mongoDb store
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const store = new MongoDBStore({
-    uri: config.config.db.url,
+    uri: MONGO_URI,
     collection: 'sessions'
 });
 
@@ -67,10 +71,10 @@ app.use(session({
 
 
 // connect to mongodb then start express server
-mongoose.connect(config.config.db.url, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('Connected to MongoDB');
-        app.listen(config.db.port, () => {
+        app.listen(config.config.server.port, () => {
             console.log('Listening on port: ' + config.config.server.port);
         });
     }

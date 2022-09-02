@@ -15,7 +15,7 @@ router.post('/register', [
         .withMessage('Name is required.')
         .isLength({ min: 8 })
         .withMessage('Full name is required.'),
-], studentController.register);
+], isAuthenticated, studentController.register);
 
 
 // export router that get all student

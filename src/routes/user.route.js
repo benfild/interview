@@ -25,7 +25,7 @@ router.post('/register', [
     .withMessage('Password is required.')
     .isLength({ min: 8 })
     .withMessage('Password must be at least 8 characters long.')
-], isAuthenticated, userController.register);
+], userController.register);
 
 // export router get all users
 router.get('/users', isAuthenticated, userController.getUsers)

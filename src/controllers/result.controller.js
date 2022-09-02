@@ -67,22 +67,13 @@ exports.getAllResults = async (req, res, next) => {
 
 // exports function that create a result then add that result to a student
 exports.addResult = async (req, res, next) => {
-    // get the student id from the request query
-    const { student_id } = req.query;
-
+    
     // get the result from the request body
-    const { mathematics, english, physics, chemistry, biology } = req.body;
+    const { mathematics, english, physics, chemistry, biology, student_id} = req.body;
 
     // get result average
-    const average = (mathematics + english + physics + chemistry + biology) / 5;
-    const status = RESULT_STATUS.pending;
-
-    // check if average is greater than 50 set result status to pass if average is less than 50 set result status to fail otherwise set to pending
-    if (average >= 50) {
-        status = RESULT_STATUS.pass;
-    } else if(average < 50) {
-        status = RESULT_STATUS.fail;
-    }
+    let average = (parseInt(mathematics) + parseInt(english) + parseInt(physics) + parseInt(chemistry) + parseInt(biology)) / 5;
+    var status = RESULT_STATUS.pending;
 
     try {
         // get the validation errors
@@ -92,6 +83,13 @@ exports.addResult = async (req, res, next) => {
         if (!errors.isEmpty()) {
             // throw error
             throwError('Invalid result fields', 422, errors.array());
+        }
+
+        // check if average is greater than 50 set result status to pass if average is less than 50 set result status to fail otherwise set to pending
+        if (average >= 50) {
+            status = RESULT_STATUS.pass;
+        } else if (average < 50) {
+            status = RESULT_STATUS.fail;
         }
 
         // get the student
@@ -105,7 +103,7 @@ exports.addResult = async (req, res, next) => {
 
         // create a reporter object
         const reporter = {
-            id: req.user._id,
+            id: req.userId,
             name: req.user.name,
         };
 

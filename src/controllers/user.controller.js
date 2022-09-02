@@ -42,8 +42,11 @@ exports.register = async (req, res, next) => {
                 name,
                 email,
                 role: ROLES_OBJECT.teacher,
-                password: hashedPassword
+                password: hashedPassword,
             });
+
+            // save the user
+            await newUser.save();
         } else {
             // create the user
             const newUser = new User({
@@ -52,15 +55,16 @@ exports.register = async (req, res, next) => {
                 role: ROLES_OBJECT.admin,
                 password: hashedPassword
             });
+
+            // save the user
+            await newUser.save();
         }
 
-        // save the user
-        await newUser.save();
 
         // send the verification token
         res.status(200).json({
             status: 200,
-            message:    `${type} registered successfully` ,
+            message: `${type} registered successfully`,
         });
     } catch (err) {
         checkErrorStatus(err);

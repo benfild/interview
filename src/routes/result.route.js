@@ -10,18 +10,23 @@ const { isAuthenticated, isTeacher, isAdmin } = require('../middlewares/auth.mid
 router.post('/add', [
     body('mathematics')
         .notEmpty()
+        .isNumeric()
         .withMessage('Mathematics is required.'),
     body('english')
         .notEmpty()
-        .withMessage('English is required.'),
+        .isNumeric()
+        .withMessage('English is required.'), 
     body('physics')
         .notEmpty()
+        .isNumeric()
         .withMessage('Physics is required.'),
     body('chemistry')
         .notEmpty()
+        .isNumeric()
         .withMessage('Chemistry is required.'),
     body('biology')
         .notEmpty()
+        .isNumeric()
         .withMessage('Biology is required.'),
 ], isAuthenticated, resultController.addResult);
 

@@ -18,9 +18,8 @@ exports.jwtAccessTokenToSignUser = (user) => {
             user_id: user._id,
             user_email: user.email,
             user_role: user.role,
-            is_verified: user.verified,
         },
-        process.env.JWT_SECRET_KEY,
+        process.env.SECRET_KEY,
         { expiresIn: '1h' }
     );
 
